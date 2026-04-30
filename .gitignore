@@ -1,0 +1,8 @@
+echo "node_modules/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+allure-results/
+allure-report/
+" > .gitignore
