@@ -1,3 +1,6 @@
+import * as dotenv from "dotenv";
+dotenv.config();
+
 import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
@@ -9,7 +12,7 @@ export default defineConfig({
   reporter: [["html"], ["allure-playwright"]],
 
   use: {
-    baseURL: "https://conduit.realworld.how",
+    baseURL: "https://demo.realworld.show",
     actionTimeout: 15000,
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
