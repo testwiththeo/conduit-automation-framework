@@ -1,8 +1,7 @@
-import { APIRequestContext, APIReponse } from '@playwright/test';
+import { APIRequestContext, APIReponse } from "@playwright/test";
 
 export abstract class BaseApiClient {
-  protected readonly request: APIRequestContext:
-
+  protected readonly request: APIRequestContext;
   constructor(request: APIRequestContext) {
     this.request = request;
   }
@@ -11,14 +10,18 @@ export abstract class BaseApiClient {
    * Centralized POST method
    * Handles dynamic header injection (e.g., authentication tokens) automatically.
    */
-  protected async post(endpoint: string, payload: object, token?: string): Promise<APIResponse> {
+  protected async post(
+    endpoint: string,
+    payload: object,
+    token?: string,
+  ): Promise<APIResponse> {
     const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     };
 
     // Inject token if provided (Shift-Left validation logic)
     if (token) {
-      headers['Authorization'] = `Token ${token}`; // Conduit uses 'Token <jwt>' format
+      headers["Authorization"] = `Token ${token}`; // Conduit uses 'Token <jwt>' format
     }
 
     return await this.request.post(endpoint, {
@@ -34,7 +37,7 @@ export abstract class BaseApiClient {
     const headers: Record<string, string> = {};
 
     if (token) {
-      headers['Authorization'] = `Token ${token}`;
+      headers["Authorization"] = `Token ${token}`;
     }
 
     return await this.request.get(endpoint, { headers });

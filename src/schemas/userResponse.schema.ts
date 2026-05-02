@@ -2,7 +2,7 @@
  * JSON Schema for Conduit user response
  * Used for Login, Register, and Current User endpoints
  */
-export const userResponseSchema = {
+export const UserResponseSchema = {
   type: "object",
   properties: {
     user: {

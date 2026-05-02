@@ -14,6 +14,9 @@ export class AuthApi extends BaseApiClient {
       },
     };
 
-    return await this.post("/api/users/login", payload);
+    return await this.post(
+      "https://api.realworld.show/api/users/login",
+      payload,
+    );
   }
 }
