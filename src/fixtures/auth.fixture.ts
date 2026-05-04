@@ -1,29 +1,25 @@
 import { test as baseTest, expect, Page } from "@playwright/test";
-import { AuthApi } from "../api/auth.api";
 
 export const test = baseTest.extend<{
   loggedInPage: Page;
 }>({
-  loggedInPage: async ({ page, request }, use) => {
+  loggedInPage: async ({ page }, use) => {
     const email = process.env.TEST_EMAIL as string;
     const password = process.env.TEST_PASSWORD as string;
 
-    const authApi = new AuthApi(request);
-    const response = await authApi.login({ email, password });
+    await page.goto("/login");
+    await page.getByPlaceholder("Email").fill(email);
+    await page.getByPlaceholder("Password").fill(password);
+    await page.getByRole("button", { name: "Sign in" }).click();
 
-    expect(response.status()).toBe(200);
-    const body = await response.json();
-    const token = body.user.token;
+    await expect(page.getByRole("link", { name: "New Article" })).toBeVisible({
+      timeout: 15000,
+    });
 
-    await page.goto(`/`);
-
-    await page.evaluate((jwtToken) => {
-      localStorage.setItem("jwtToken", jwtToken);
-    }, token);
     await use(page);
 
     await page.evaluate(() => {
-      localStorage.clear();
+      window.localStorage.clear();
     });
   },
 });

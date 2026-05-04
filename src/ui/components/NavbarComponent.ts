@@ -6,6 +6,7 @@ export class NavbarComponent extends BaseComponent {
   readonly signInLink: Locator;
   readonly signUpLink: Locator;
   readonly profileLink: Locator;
+  readonly newArticleLink: Locator;
 
   constructor(page: Page) {
     super(page, page.locator("nav.navbar"));
@@ -13,7 +14,9 @@ export class NavbarComponent extends BaseComponent {
     this.homeLink = this.rootLocator.getByRole("link", { name: "Home" });
     this.signInLink = this.rootLocator.getByRole("link", { name: "Sign in" });
     this.signUpLink = this.rootLocator.getByRole("link", { name: "Sign up" });
-
+    this.newArticleLink = this.rootLocator.getByRole("link", {
+      name: "New Article",
+    });
     this.profileLink = this.rootLocator.locator("a.nav-link.active");
   }
 

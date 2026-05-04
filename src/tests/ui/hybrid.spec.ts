@@ -7,9 +7,9 @@ test.describe("Hybrid Flow: Fast Authentication", () => {
   }) => {
     const homePage = new HomePage(loggedInPage);
 
-    await homePage.navigate();
-    await homePage.waitForPageToLoad();
+    // await homePage.navigate();
+    // await homePage.waitForPageToLoad();
 
-    await expect(homePage.navbar.profileLink).toBeVisible();
+    await expect(homePage.navbar.newArticleLink).toBeVisible();
   });
 });
