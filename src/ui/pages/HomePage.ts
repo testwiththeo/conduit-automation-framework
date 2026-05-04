@@ -12,7 +12,7 @@ export class HomePage extends BasePage {
     super(page, "/");
 
     this.navbar = new NavbarComponent(page);
-    this.globalFeedTab = page.getByRole("button", { name: "Global Feed" });
+    this.globalFeedTab = page.getByText("Global Feed", { exact: true });
     this.articleList = page.locator("div.article-preview");
   }
 
